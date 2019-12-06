@@ -66,7 +66,6 @@ public class UserTest extends BasicTest {
     public void test6() {
         String num = MD5Utils.getNum();
         SendMessage.send("15737496971", num, stringRedisTemplate);
-        Sring name = "宁天舒";
     }
 
 }
