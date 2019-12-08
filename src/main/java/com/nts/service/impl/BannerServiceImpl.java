@@ -1,6 +1,8 @@
 package com.nts.service.impl;
 
+import com.nts.annotation.EditCache;
 import com.nts.annotation.LogAnnotation;
+import com.nts.annotation.SelectCache;
 import com.nts.dao.BannerDao;
 import com.nts.entity.Banner;
 import com.nts.service.BannerService;
@@ -28,6 +30,7 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
+    @SelectCache
     public Map findAll(Integer page, Integer rows) {
         // jqgrid分页  rows 数据 page 当前页 records 总条数 total 总页数
         HashMap hashMap = new HashMap();
@@ -48,17 +51,20 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
+    //  @EditCache
     public void removeBanner(String id) {
         bannerDao.deleteByPrimaryKey(id);
     }
 
     @Override
+    @EditCache
     @LogAnnotation("更新轮播图信息")
     public void updateBanner(Banner banner) {
         bannerDao.updateByPrimaryKeySelective(banner);
     }
 
     @Override
+    // @EditCache
     @LogAnnotation("删除轮播图或批量删除")
     public void removeMany(List<String> ids) {
         bannerDao.deleteByIdList(ids);
